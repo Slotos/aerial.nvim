@@ -561,5 +561,70 @@ describe("treesitter ruby", function()
         },
       },
     })
+
+    -- Rails concerning blocks test
+    -- Singleton methods test
+    util.test_file_symbols("treesitter", "./tests/treesitter/ruby_test_concerning.rb", {
+      {
+        kind = "Class",
+        name = "Railsy",
+        level = 0,
+        lnum = 1,
+        col = 0,
+        end_lnum = 9,
+        end_col = 3,
+        children = {
+          {
+            kind = "Module",
+            name = "concerning :Explosions",
+            level = 1,
+            lnum = 2,
+            col = 2,
+            end_lnum = 4,
+            end_col = 5,
+            children = {
+              {
+                kind = "Method",
+                name = "test",
+                level = 2,
+                lnum = 3,
+                col = 4,
+                end_lnum = 3,
+                end_col = 17,
+              },
+            },
+          },
+          {
+            kind = "Module",
+            name = "concerning Writing",
+            level = 1,
+            lnum = 6,
+            col = 2,
+            end_lnum = 8,
+            end_col = 5,
+            children = {
+              {
+                kind = "Method",
+                name = "test",
+                level = 2,
+                lnum = 7,
+                col = 4,
+                end_lnum = 7,
+                end_col = 17,
+              },
+            },
+          },
+          {
+            kind = "Module",
+            name = "concerning :Criminal",
+            level = 1,
+            lnum = 10,
+            col = 2,
+            end_lnum = 10,
+            end_col = 31,
+          },
+        },
+      },
+    })
   end)
 end)
