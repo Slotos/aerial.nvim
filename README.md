@@ -58,9 +58,6 @@ aerial supports all the usual plugin managers
 require("packer").startup(function()
   use({
     "stevearc/aerial.nvim",
-    config = function()
-      require("aerial").setup()
-    end,
   })
 end)
 ```
@@ -117,18 +114,19 @@ git clone --depth=1 https://github.com/stevearc/aerial.nvim.git \
 
 ## Setup
 
-Somewhere in your init.lua you will need to call `aerial.setup()`. See below for
+Aerial works with defaults out of the box. You can override the defaults by providing
+a partial config override table in a `vim.g.aerial_nvim_config`. See below for
 [a full list of options](#options).
 
 ```lua
-require("aerial").setup({
+vim.g.aerial_nvim_config = {
   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
   on_attach = function(bufnr)
     -- Jump forwards/backwards with '{' and '}'
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
     vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
   end,
-})
+}
 -- You probably also want to set a keymap to toggle aerial
 vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 ```
@@ -213,8 +211,8 @@ it](https://github.com/stevearc/aerial.nvim/issues/new?assignees=stevearc&labels
 ## Options
 
 ```lua
--- Call the setup function to change the default behavior
-require("aerial").setup({
+-- Provide a configuration, for example in `.config/nvim/plugin/aerial_config.lua`
+vim.g.aerial_nvim_config = {
   -- Priority list of preferred backends for aerial.
   -- This can be a filetype map (see :help aerial-filetype-map)
   backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
@@ -569,7 +567,7 @@ require("aerial").setup({
     -- How long to wait (in ms) after a buffer change before updating
     update_delay = 300,
   },
-})
+}
 ```
 
 All possible SymbolKind values can be found [in the LSP
@@ -735,7 +733,6 @@ hi AerialGuide2 guifg=Blue
 <!-- API -->
 
 - [setup(opts)](doc/api.md#setupopts)
-- [sync_load()](doc/api.md#sync_load)
 - [is_open(opts)](doc/api.md#is_openopts)
 - [close()](doc/api.md#close)
 - [close_all()](doc/api.md#close_all)
