@@ -67,7 +67,8 @@ local function get_hl_by_name(name)
   return vim.api.nvim_get_hl(0, { name = name, link = false })
 end
 
-M.create_highlight_groups = function()
+-- Create highlight groups on initial load
+(function()
   -- Use Normal colors for AerialNormal, while stripping bold/italic/etc
   local normal_defn = get_hl_by_name("Normal")
   -- The default text highlight
@@ -141,6 +142,6 @@ M.create_highlight_groups = function()
   link("AerialStructIcon", "Type")
   link("AerialTypeParameterIcon", "Identifier")
   link("AerialVariableIcon", "Identifier")
-end
+end)()
 
 return M
