@@ -102,7 +102,7 @@ def update_readme_toc():
 
 @lru_cache
 def get_commands() -> List[Command]:
-    cmd = f"nvim --headless -u /dev/null -c 'set runtimepath+=.' --cmd 'let g:aerial_echo_commands_on_load = v:true' +qall"
+    cmd = f"nvim --headless -u /dev/null --cmd 'set runtimepath+=.' --cmd 'let g:aerial_echo_commands_on_load = v:true' +qall"
     print(cmd)
     code, txt = subprocess.getstatusoutput(cmd)
     if code != 0:
