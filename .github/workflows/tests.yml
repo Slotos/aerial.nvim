@@ -3,10 +3,10 @@ name: Run tests
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   luacheck:
@@ -96,7 +96,7 @@ jobs:
           python -m pip install pyparsing==3.0.9
           make doc
       - name: Commit changes
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_MSG: |
@@ -113,7 +113,7 @@ jobs:
   release:
     name: release
 
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs:
       - luacheck
       - stylua
