@@ -69,7 +69,10 @@ M.add_fold_mappings = function(bufnr)
       group = group,
       desc = "Aerial update tree folds based on foldlevel",
       callback = function()
-        aerial.tree_set_collapse_level(0, tonumber(vim.v.option_new))
+        local foldlevel = tonumber(vim.v.option_new)
+        if foldlevel then
+          aerial.tree_set_collapse_level(0, foldlevel)
+        end
       end,
     })
   end
